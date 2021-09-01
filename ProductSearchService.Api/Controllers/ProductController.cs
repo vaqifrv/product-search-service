@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using ProductSearchService.Domain.Entities;
+using ProductSearchService.DTO;
 using ProductSearchService.Services.Abstractions;
-using System.Collections.Generic;
 
 namespace ProductSearchService.Api.Controllers
 {
@@ -10,19 +8,18 @@ namespace ProductSearchService.Api.Controllers
     [Route("[controller]")]
     public class ProductController : ControllerBase
     {
-        private readonly IServiceManager _serviceManager;
-        private readonly ILogger<ProductController> _logger;
+        private readonly IProductService _productservice;
 
-        public ProductController(IServiceManager serviceManager, ILogger<ProductController> logger)
+        public ProductController(IProductService productservice)
         {
-            _serviceManager = serviceManager;
-            _logger = logger;
+            _productservice = productservice;
         }
 
+        [Route("search/{name}")]
         [HttpGet]
-        public IEnumerable<Product> Get()
+        public BaseResponse<SearchResultDto> Search(string name)
         {
-            return new List<Product>();
+            return _productservice.Search(name);
         }
     }
 }

@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ProductSearchService.Core\ProductSearchService.Domain.csproj" />
     <ProjectReference Include="..\ProductSearchService.DataAccess\ProductSearchService.DataAccess.csproj" />
+    <ProjectReference Include="..\ProductSearchService.DTO\ProductSearchService.DTO.csproj" />
     <ProjectReference Include="..\ProductSearchService.Services.Abstractions\ProductSearchService.Services.Abstractions.csproj" />
     <ProjectReference Include="..\ProductSearchService.Services\ProductSearchService.Services.csproj" />
   </ItemGroup>
