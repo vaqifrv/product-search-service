@@ -8,3 +8,6 @@
 /ProductSearchService.DTO/obj
 /ProductSearchService.Services/obj
 /ProductSearchService.Services.Abstractions/obj
+/ProductSearchService.DTO/bin
+/ProductSearchService.Services/bin
+/ProductSearchService.Services.Abstractions/bin
