@@ -1,1 +1,10 @@
 /.vs
+/ProductSearchService.Api/obj
+/ProductSearchService.Api/bin
+/ProductSearchService.Core/obj
+/ProductSearchService.Core/bin
+/ProductSearchService.DataAccess/obj
+/ProductSearchService.DataAccess/bin
+/ProductSearchService.DTO/obj
+/ProductSearchService.Services/obj
+/ProductSearchService.Services.Abstractions/obj
