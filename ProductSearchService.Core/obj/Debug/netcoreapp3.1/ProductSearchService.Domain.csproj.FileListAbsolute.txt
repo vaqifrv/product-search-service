@@ -1,0 +1,8 @@
+C:\Users\User\source\repos\ProductSearchService\ProductSearchService.Core\bin\Debug\netcoreapp3.1\ProductSearchService.Domain.deps.json
+C:\Users\User\source\repos\ProductSearchService\ProductSearchService.Core\bin\Debug\netcoreapp3.1\ProductSearchService.Domain.dll
+C:\Users\User\source\repos\ProductSearchService\ProductSearchService.Core\bin\Debug\netcoreapp3.1\ProductSearchService.Domain.pdb
+C:\Users\User\source\repos\ProductSearchService\ProductSearchService.Core\obj\Debug\netcoreapp3.1\ProductSearchService.Domain.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\ProductSearchService\ProductSearchService.Core\obj\Debug\netcoreapp3.1\ProductSearchService.Domain.AssemblyInfo.cs
+C:\Users\User\source\repos\ProductSearchService\ProductSearchService.Core\obj\Debug\netcoreapp3.1\ProductSearchService.Domain.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\ProductSearchService\ProductSearchService.Core\obj\Debug\netcoreapp3.1\ProductSearchService.Domain.dll
+C:\Users\User\source\repos\ProductSearchService\ProductSearchService.Core\obj\Debug\netcoreapp3.1\ProductSearchService.Domain.pdb
