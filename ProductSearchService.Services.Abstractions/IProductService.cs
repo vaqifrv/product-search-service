@@ -2,7 +2,7 @@
 
 namespace ProductSearchService.Services.Abstractions
 {
-    public class Class1
+    public class IProductService
     {
     }
 }

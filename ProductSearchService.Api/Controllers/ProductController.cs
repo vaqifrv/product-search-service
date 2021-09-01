@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ProductSearchService.Domain;
-using System;
+using ProductSearchService.Domain.Entities;
+using ProductSearchService.Services.Abstractions;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProductSearchService.Api.Controllers
 {
@@ -12,29 +10,19 @@ namespace ProductSearchService.Api.Controllers
     [Route("[controller]")]
     public class ProductController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
+        private readonly IServiceManager _serviceManager;
         private readonly ILogger<ProductController> _logger;
 
-        public ProductController(ILogger<ProductController> logger)
+        public ProductController(IServiceManager serviceManager, ILogger<ProductController> logger)
         {
+            _serviceManager = serviceManager;
             _logger = logger;
         }
 
         [HttpGet]
         public IEnumerable<Product> Get()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new Product
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return new List<Product>();
         }
     }
 }

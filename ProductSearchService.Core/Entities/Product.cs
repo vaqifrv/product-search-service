@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ProductSearchService.Domain
+namespace ProductSearchService.Domain.Entities
 {
     public class Product
     {
