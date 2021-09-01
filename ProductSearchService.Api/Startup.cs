@@ -29,8 +29,15 @@ namespace ProductSearchService.Api
             services.AddSwaggerGen(c =>
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Web", Version = "v1" }));
 
+            #region Add Services
             services.AddScoped<IProductService, ProductService>();
+            #endregion
+
+            #region Add Repositories
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IWarehouseRepository, WarehouseRepository>();
+            #endregion
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddDbContext<RepositoryDbContext>(builder =>

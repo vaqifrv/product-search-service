@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProductSearchService.DTO;
 using ProductSearchService.Services.Abstractions;
+using System.Threading.Tasks;
 
 namespace ProductSearchService.Api.Controllers
 {
@@ -17,9 +18,9 @@ namespace ProductSearchService.Api.Controllers
 
         [Route("search/{name}")]
         [HttpGet]
-        public BaseResponse<SearchResultDto> Search(string name)
+        public async Task<BaseResponse<SearchResultDto>> Search(string name)
         {
-            return _productservice.Search(name);
+            return await _productservice.Search(name);
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using ProductSearchService.DTO;
 using System;
+using System.Threading.Tasks;
 
 namespace ProductSearchService.Services.Abstractions
 {
     public interface IProductService
     {
-        BaseResponse<SearchResultDto> Search(string name);
+        Task<BaseResponse<SearchResultDto>> Search(string name);
     }
 }

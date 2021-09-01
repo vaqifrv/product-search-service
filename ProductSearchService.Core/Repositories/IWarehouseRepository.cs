@@ -1,13 +1,12 @@
 ﻿using ProductSearchService.Domain.Entities;
-using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ProductSearchService.Domain.Repositories
 {
-    public interface IProductRepository
+    public interface IWarehouseRepository
     {
-        Task<Product> GetProductByNameByWarehouse(string name, int warehouseId);
+        public Task<List<Warehouse>> GetOrderedWarehouses(double clientLat, double clientLon);
     }
 }
