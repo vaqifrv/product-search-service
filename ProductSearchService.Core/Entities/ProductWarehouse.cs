@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace ProductSearchService.Domain.Entities
 {
+    [Table("ProductWarehouses")]
     public class ProductWarehouse
     {
         public int WarehouseId { get; set; }

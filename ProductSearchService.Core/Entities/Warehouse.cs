@@ -5,11 +5,12 @@ using System.Text;
 
 namespace ProductSearchService.Domain.Entities
 {
+    [Table("Warehouses")]
     public class Warehouse: BaseEntity
     {
         public string Name { get; set; }
-        public int Lat { get; set; }
-        public int Long { get; set; }
+        public double Lat { get; set; }
+        public double Lon { get; set; }
 
         [NotMapped]
         public Warehouse NextClosest { get; set; }

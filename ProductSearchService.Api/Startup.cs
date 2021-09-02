@@ -31,11 +31,14 @@ namespace ProductSearchService.Api
 
             #region Add Services
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IWarehouseService, WarehouseService>();
+            services.AddScoped<IProductWarehouseService, ProductWarehouseService>();
             #endregion
 
             #region Add Repositories
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IWarehouseRepository, WarehouseRepository>();
+            services.AddScoped<IProductWarehouseRepository, ProductWarehouseRepository>();
             #endregion
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();

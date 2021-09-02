@@ -8,5 +8,6 @@ namespace ProductSearchService.Domain.Repositories
     public interface IWarehouseRepository
     {
         public Task<List<Warehouse>> GetOrderedWarehouses(double clientLat, double clientLon);
+        void Save(Warehouse entity);
     }
 }

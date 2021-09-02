@@ -12,25 +12,41 @@ namespace ProductSearchService.Services
 {
     public class ProductService : IProductService
     {
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IProductRepository _productRepository;
         private readonly IWarehouseService _warehouseService;
         private readonly ILogger<ProductService> _logger;
 
-        public ProductService(IProductRepository productRepository,
+        public ProductService(IUnitOfWork unitOfWork,
+            IProductRepository productRepository,
             IWarehouseService warehouseService,
             ILogger<ProductService> logger)
         {
+            _unitOfWork = unitOfWork;
             _productRepository = productRepository;
             _warehouseService = warehouseService;
             _logger = logger;
+        }
+
+        public async Task Save(Product entity)
+        {
+            try
+            {
+                _productRepository.Save(entity);
+                await _unitOfWork.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred when save product");
+            }
         }
 
         public async Task<BaseResponse<SearchResultDto>> Search(string name)
         {
             try
             {
-                double clientLat = 0, 
-                       clientLon = 0;
+                double clientLat = 40.1431, 
+                       clientLon = 47.5769;
 
                 var warehouses = await _warehouseService.GetOrderedWarehouses(clientLat, clientLon);
 

@@ -7,5 +7,6 @@ namespace ProductSearchService.Services.Abstractions
     public interface IWarehouseService
     {
         Task<List<Warehouse>> GetOrderedWarehouses(double clientLat, double clientLon);
+        Task Save(Warehouse entity);
     }
 }

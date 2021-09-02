@@ -19,7 +19,7 @@ namespace ProductSearchService.DataAccess.Repositories
 
             warehouses.ForEach((x) =>
             {
-                x.DistanceByClient = Helpers.CalculateDistanceByLatLong(x.Lat, x.Long, clientLat, clientLon);
+                x.DistanceByClient = Helpers.CalculateDistanceByLatLong(x.Lat, x.Lon, clientLat, clientLon);
             });
 
             warehouses = warehouses.OrderBy(x => x.DistanceByClient).ToList();
@@ -30,6 +30,11 @@ namespace ProductSearchService.DataAccess.Repositories
             }
 
             return warehouses;
+        }
+
+        public void Save(Warehouse entity)
+        {
+            _dbContext.Add(entity);
         }
     }
 }

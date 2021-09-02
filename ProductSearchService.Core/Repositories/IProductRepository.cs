@@ -9,5 +9,6 @@ namespace ProductSearchService.Domain.Repositories
     public interface IProductRepository
     {
         Task<Product> GetProductByNameByWarehouse(string name, int warehouseId);
+        void Save(Product entity);
     }
 }
