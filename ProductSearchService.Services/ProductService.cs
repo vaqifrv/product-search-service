@@ -2,6 +2,7 @@
 using ProductSearchService.Domain.Entities;
 using ProductSearchService.Domain.Repositories;
 using ProductSearchService.DTO;
+using ProductSearchService.DTO.Response;
 using ProductSearchService.Services.Abstractions;
 using System;
 using System.Collections.Generic;
@@ -66,8 +67,8 @@ namespace ProductSearchService.Services
             if (item != null) return new BaseResponse<SearchResultDto>(
                 new SearchResultDto()
                 {
-                    Product = item,
-                    Warehouse = warehouse
+                    Product = new ProductResultDto { Id = item.Id, Name = item.Name },
+                    Warehouse = new WarehouseResultDto { Id=warehouse.Id, Name = warehouse.Name }
                 },
                 ResponseStatus.Success
                 );

@@ -1,5 +1,6 @@
 ﻿using ProductSearchService.Domain.Entities;
 using ProductSearchService.DTO;
+using ProductSearchService.DTO.Response;
 using System;
 using System.Threading.Tasks;
 

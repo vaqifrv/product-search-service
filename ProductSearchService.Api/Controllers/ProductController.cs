@@ -2,6 +2,7 @@
 using ProductSearchService.Domain.Entities;
 using ProductSearchService.DTO;
 using ProductSearchService.DTO.Request;
+using ProductSearchService.DTO.Response;
 using ProductSearchService.Services.Abstractions;
 using System.Threading.Tasks;
 
