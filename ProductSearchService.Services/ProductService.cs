@@ -46,7 +46,7 @@ namespace ProductSearchService.Services
         {
             try
             {
-                double clientLat = 40.1431, 
+                double clientLat = 40.1431,
                        clientLon = 47.5769;
 
                 var warehouses = await _warehouseService.GetOrderedWarehouses(clientLat, clientLon);
@@ -68,10 +68,12 @@ namespace ProductSearchService.Services
                 new SearchResultDto()
                 {
                     Product = new ProductResultDto { Id = item.Id, Name = item.Name },
-                    Warehouse = new WarehouseResultDto { Id=warehouse.Id, Name = warehouse.Name }
+                    Warehouse = new WarehouseResultDto { Id = warehouse.Id, Name = warehouse.Name }
                 },
                 ResponseStatus.Success
                 );
+
+            if (warehouse.NextClosest == null) return new BaseResponse<SearchResultDto>(null, ResponseStatus.NotFound);
 
             return await SearchByNameByWarehouse(name, warehouse.NextClosest);
         }
