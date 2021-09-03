@@ -18,6 +18,8 @@ namespace ProductSearchService.Services
         private readonly IWarehouseService _warehouseService;
         private readonly ILogger<ProductService> _logger;
 
+        const double clientLat = 40.1431, clientLon = 47.5769; // Azerbaijan coordinates
+
         public ProductService(IUnitOfWork unitOfWork,
             IProductRepository productRepository,
             IWarehouseService warehouseService,
@@ -46,34 +48,30 @@ namespace ProductSearchService.Services
         {
             try
             {
-                double clientLat = 40.1431,
-                       clientLon = 47.5769;
+                if (string.IsNullOrEmpty(name)) return Helpers.BadRequestResult;
 
                 var warehouses = await _warehouseService.GetOrderedWarehouses(clientLat, clientLon);
 
-                return await SearchByNameByWarehouse(name, warehouses[0]);
+                return await SearchByNameByWarehouse(name, warehouses.FirstOrDefault());
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error occurred when search product");
-                return new BaseResponse<SearchResultDto>(null, ResponseStatus.Error);
+                return Helpers.ErrorResult;
             }
         }
 
         private async Task<BaseResponse<SearchResultDto>> SearchByNameByWarehouse(string name, Warehouse warehouse)
         {
+            // if warehouses not exist in database
+            if(warehouse == null) return Helpers.NotFoundResult;
+
             var item = await _productRepository.GetProductByNameByWarehouse(name, warehouse.Id);
 
-            if (item != null) return new BaseResponse<SearchResultDto>(
-                new SearchResultDto()
-                {
-                    Product = new ProductResultDto { Id = item.Id, Name = item.Name },
-                    Warehouse = new WarehouseResultDto { Id = warehouse.Id, Name = warehouse.Name }
-                },
-                ResponseStatus.Success
-                );
+            if (item != null) return Helpers.SuccessResult(item, warehouse);
 
-            if (warehouse.NextClosest == null) return new BaseResponse<SearchResultDto>(null, ResponseStatus.NotFound);
+            // item not found curret warehouse, search in next closest
+            if (warehouse.NextClosest == null) return Helpers.NotFoundResult;
 
             return await SearchByNameByWarehouse(name, warehouse.NextClosest);
         }
