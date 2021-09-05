@@ -22,7 +22,7 @@ namespace ProductSearchService.Api.Controllers
         [HttpPost]
         public async Task Save(ProductSaveDto entity)
         {
-            await _productservice.Save(new Product { Name = entity.Name });
+            await _productservice.Save(new Product { Name = entity.Name, Weight = entity.Weight });
         }
 
         [Route("search/{name}")]

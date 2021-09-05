@@ -8,6 +8,7 @@ namespace ProductSearchService.Domain.Entities
     public class Product: BaseEntity
     {
         public string Name { get; set; }
+        public double Weight { get; set; }
 
         public ICollection<ProductWarehouse> ProductWarehouses { get; set; }
     }

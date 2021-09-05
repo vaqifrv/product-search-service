@@ -7,5 +7,6 @@ namespace ProductSearchService.DTO.Request
     public class ProductSaveDto
     {
         public string Name { get; set; }
+        public double Weight { get; set; }
     }
 }

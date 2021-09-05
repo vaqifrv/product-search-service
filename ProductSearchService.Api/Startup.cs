@@ -29,16 +29,18 @@ namespace ProductSearchService.Api
             services.AddSwaggerGen(c =>
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Web", Version = "v1" }));
 
-            #region Add Services
-            services.AddScoped<IProductService, ProductService>();
-            services.AddScoped<IWarehouseService, WarehouseService>();
-            services.AddScoped<IProductWarehouseService, ProductWarehouseService>();
-            #endregion
-
             #region Add Repositories
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IWarehouseRepository, WarehouseRepository>();
             services.AddScoped<IProductWarehouseRepository, ProductWarehouseRepository>();
+            services.AddScoped<ITransportTypeRepository, TransportTypeRepository>();
+            #endregion
+
+            #region Add Services
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IWarehouseService, WarehouseService>();
+            services.AddScoped<IProductWarehouseService, ProductWarehouseService>();
+            services.AddScoped<ITransportTypeService, TransportTypeService>();
             #endregion
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
