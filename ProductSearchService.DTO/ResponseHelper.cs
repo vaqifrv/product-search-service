@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ProductSearchService.DTO
 {
-    public static class Helpers
+    public static class ResponseHelper
     {
         public static BaseResponse<SearchResultDto> NotFoundResult => new BaseResponse<SearchResultDto>(null, ResponseStatus.NotFound);
         public static BaseResponse<SearchResultDto> BadRequestResult => new BaseResponse<SearchResultDto>(null, ResponseStatus.BadRequest);

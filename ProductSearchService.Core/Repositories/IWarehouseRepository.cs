@@ -7,7 +7,7 @@ namespace ProductSearchService.Domain.Repositories
 {
     public interface IWarehouseRepository
     {
-        public Task<List<Warehouse>> GetOrderedWarehouses(double clientLat, double clientLon);
+        Task<List<Warehouse>> GetAllAsync();
         void Save(Warehouse entity);
     }
 }

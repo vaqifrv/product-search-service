@@ -13,23 +13,9 @@ namespace ProductSearchService.DataAccess.Repositories
 
         public WarehouseRepository(RepositoryDbContext dbContext) => _dbContext = dbContext;
 
-        public async Task<List<Warehouse>> GetOrderedWarehouses(double clientLat, double clientLon)
+        public async Task<List<Warehouse>> GetAllAsync()
         {
-            var warehouses = await _dbContext.Warehouses.ToListAsync();
-
-            warehouses.ForEach((x) =>
-            {
-                x.DistanceByClient = Helpers.CalculateDistanceByLatLong(x.Lat, x.Lon, clientLat, clientLon);
-            });
-
-            warehouses = warehouses.OrderBy(x => x.DistanceByClient).ToList();
-
-            for (int i = 0; i < warehouses.Count - 1; i++)
-            {
-                warehouses[i].NextClosest = warehouses[i + 1];
-            }
-
-            return warehouses;
+            return await _dbContext.Warehouses.ToListAsync();
         }
 
         public void Save(Warehouse entity)

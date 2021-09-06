@@ -5,6 +5,7 @@ using ProductSearchService.DTO;
 using ProductSearchService.Services.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProductSearchService.Services
@@ -39,7 +40,21 @@ namespace ProductSearchService.Services
 
         public async Task<List<Warehouse>> GetOrderedWarehouses(double clientLat, double clientLon)
         {
-            return await _warehouseRepository.GetOrderedWarehouses(clientLat, clientLon);
+            var warehouses = await _warehouseRepository.GetAllAsync();
+
+            warehouses.ForEach((x) =>
+            {
+                x.DistanceByClient = Helper.CalculateDistanceByLatLong(x.Lat, x.Lon, clientLat, clientLon);
+            });
+
+            warehouses = warehouses.OrderBy(x => x.DistanceByClient).ToList();
+
+            for (int i = 0; i < warehouses.Count - 1; i++)
+            {
+                warehouses[i].NextClosest = warehouses[i + 1];
+            }
+
+            return warehouses;
         }
     }
 }

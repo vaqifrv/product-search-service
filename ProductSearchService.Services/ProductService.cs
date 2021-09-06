@@ -51,7 +51,7 @@ namespace ProductSearchService.Services
         {
             try
             {
-                if (string.IsNullOrEmpty(name)) return Helpers.BadRequestResult;
+                if (string.IsNullOrEmpty(name)) return ResponseHelper.BadRequestResult;
 
                 var warehouses = await _warehouseService.GetOrderedWarehouses(clientLat, clientLon);
 
@@ -60,25 +60,25 @@ namespace ProductSearchService.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error occurred when search product");
-                return Helpers.ErrorResult;
+                return ResponseHelper.ErrorResult;
             }
         }
 
         private async Task<BaseResponse<SearchResultDto>> SearchByNameByWarehouse(string name, Warehouse warehouse)
         {
             // if warehouses not exist in database
-            if (warehouse == null) return Helpers.NotFoundResult;
+            if (warehouse == null) return ResponseHelper.NotFoundResult;
 
             var item = await _productRepository.GetProductByNameByWarehouse(name, warehouse.Id);
 
             if (item != null)
             {
                 var transportTypes = await _transportTypeService.GetTransportTypesByWeightByDistance(item.Weight, warehouse.DistanceByClient);
-                return Helpers.SuccessResult(item, warehouse, transportTypes);
+                return ResponseHelper.SuccessResult(item, warehouse, transportTypes);
             }
 
             // item not found curret warehouse, search in next closest
-            if (warehouse.NextClosest == null) return Helpers.NotFoundResult;
+            if (warehouse.NextClosest == null) return ResponseHelper.NotFoundResult;
 
             return await SearchByNameByWarehouse(name, warehouse.NextClosest);
         }

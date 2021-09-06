@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProductSearchService.DataAccess
+namespace ProductSearchService.Services
 {
-    public static class Helpers
+    public static class Helper
     {
         public static double CalculateDistanceByLatLong(double lat1, double long1, double lat2, double long2)
         {
